@@ -223,11 +223,12 @@ game.PlayerEntity = me.Entity.extend({
             }
         }else if (!this.renderable.isCurrentAnimation("attack")) {
             this.renderable.setCurrentAnimation("idle");
-        }else if (!this.renderable.isCurrentAnimation("attackup")) {
-            this.renderable.setCurrentAnimation("idle");
-        }else if (!this.renderable.isCurrentAnimation("attackdown")) {
-            this.renderable.setCurrentAnimation("idle");
         }
+//        else if (!this.renderable.isCurrentAnimation("attackup")) {
+//            this.renderable.setCurrentAnimation("idle");
+//        }else if (!this.renderable.isCurrentAnimation("attackdown")) {
+//            this.renderable.setCurrentAnimation("idle");
+//        }
     },
     
     collideHandler: function(response) {
