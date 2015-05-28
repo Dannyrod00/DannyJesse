@@ -40,7 +40,7 @@ game.PlayerEntity = me.Entity.extend({
     
     setAttributes: function() {
         this.health = game.data.playerHealth;
-        this.body.setVelocity(game.data.playerMoveSpeed,  10);
+        this.body.setVelocity(game.data.playerMoveSpeed,  2);
         this.attack = game.data.playerAttack;
         this.body.gravity = 0;
     },
@@ -53,14 +53,14 @@ game.PlayerEntity = me.Entity.extend({
     },
     
     addAnimation: function() {
-        this.renderable.addAnimation("idle", [0]);
+        this.renderable.addAnimation("idle", [16]);
         this.renderable.addAnimation("walk", [38, 39], 80);
-        this.renderable.addAnimation("walkup", [61, 62], 80);
-        this.renderable.addAnimation("walkdown", [61, 62], 80);      
+        this.renderable.addAnimation("walkup", [53, 54, 55], 80);
+        this.renderable.addAnimation("walkdown", [17, 18], 80);      
         this.renderable.addAnimation("attack", [23, 24, 25, 26, 27, 28], 80);
-        this.renderable.addAnimation("attackup", [1, 2, 3, 4, 5, 6, 7, 8], 80);
-        this.renderable.addAnimation("attackdown", [61, 62], 80);
-        this.renderable.addAnimation("death", [404, 405, 406, 407], 80);
+        this.renderable.addAnimation("attackdown", [1, 2, 3, 4, 5, 6, 7, 8], 80);
+        this.renderable.addAnimation("attackup", [46, 47, 48, 49, 50, 51, 52], 80);
+        this.renderable.addAnimation("death", [144, 146, 147, 148], 80);
 
     },
     
@@ -191,20 +191,43 @@ game.PlayerEntity = me.Entity.extend({
                 // that we save the animation even if we swit
                 this.renderable.setAnimationFrame();
             }
+             else if (!this.renderable.isCurrentAnimation("attackup")) {
+                this.renderable.setCurrentAnimation("attackup", "idle");
+                // Makes sure that the nexxt time that we use this animation, 
+                // that we save the animation even if we swit
+                this.renderable.setAnimationFrame();
+            }
+             else if (!this.renderable.isCurrentAnimation("attackdown")) {
+                this.renderable.setCurrentAnimation("attackdown", "idle");
+                // Makes sure that the nexxt time that we use this animation, 
+                // that we save the animation even if we swit
+                this.renderable.setAnimationFrame();
+            }
 
         } else if (this.body.vel.x !== 0 && !this.renderable.isCurrentAnimation("attack")) {
             if (!this.renderable.isCurrentAnimation("walk")) {
                 this.renderable.setCurrentAnimation("walk");
 
             }
-        }else if (this.body.vel.y !== 0 && !this.renderable.isCurrentAnimation("attack")) {
+        }
+        else if (this.body.vel.x !== 0 && !this.renderable.isCurrentAnimation("attackup")) {
             if (!this.renderable.isCurrentAnimation("walkup")) {
                 this.renderable.setCurrentAnimation("walkup");
-        
+
+            }
+        }
+        else if (this.body.vel.x !== 0 && !this.renderable.isCurrentAnimation("attackdown")) {
+            if (!this.renderable.isCurrentAnimation("walkdown")) {
+                this.renderable.setCurrentAnimation("walkdown");
+
+            }
         }else if (!this.renderable.isCurrentAnimation("attack")) {
             this.renderable.setCurrentAnimation("idle");
+        }else if (!this.renderable.isCurrentAnimation("attackup")) {
+            this.renderable.setCurrentAnimation("idle");
+        }else if (!this.renderable.isCurrentAnimation("attackdown")) {
+            this.renderable.setCurrentAnimation("idle");
         }
-    }
     },
     
     collideHandler: function(response) {

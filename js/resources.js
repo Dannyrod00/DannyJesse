@@ -15,7 +15,7 @@ game.resources = [
         {name: "gold-screen", type:"image", src: "data/img/spend.png"},
         {name: "pause-screen", type:"image", src: "data/img/pause-screen.png"},
         {name: "load-screen", type:"image", src: "data/img/loadpic.png"},
-        {name: "new-screen", type:"image", src: "data/img/Drama man.png"},
+        {name: "new-screen", type:"image", src: "data/img/sparticus beby.png"},
         {name: "spear", type:"image", src: "data/img/fireball_1.png"},
         {name: "house", type:"image", src: "data/img/House.png"},
         {name: "storage", type:"image", src: "data/img/Storage.png"},
