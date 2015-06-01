@@ -7,10 +7,10 @@ game.PlayScreen = me.ScreenObject.extend({
 		game.data.score = 0;
                 
                 // Loads levels from Tiled.
-                me.levelDirector.loadLevel("map");
+                me.levelDirector.loadLevel("maptd");
                 // resets player position.
-                this.resetPlayer(20, 8);
-                // resets Game Time Manager.
+                this.resetPlayer(10, 10);
+                // resets Game Tim0e Manager.
                 var gameTimerManager = me.pool.pull("GameTimerManager", 0, 0, {});
                 me.game.world.addChild(gameTimerManager, 0);
                 // resets Hero Death Manager.
